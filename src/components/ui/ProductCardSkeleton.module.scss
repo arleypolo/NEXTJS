@@ -1,0 +1,24 @@
+@use "../../styles/variables" as *;
+
+.card {
+  background: $bg-primary;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.imageContainer {
+  aspect-ratio: 1;
+  background-color: $gray-100;
+}
+
+.content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer {
+  margin-top: 0.5rem;
+}

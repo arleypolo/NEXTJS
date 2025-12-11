@@ -1,0 +1,44 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.notFoundPage {
+  @include flex-center;
+  min-height: 60vh;
+  padding: $spacing-xl;
+}
+
+.container {
+  text-align: center;
+  max-width: 500px;
+}
+
+.errorCode {
+  font-size: 8rem;
+  font-weight: 800;
+  color: $primary-color;
+  line-height: 1;
+  margin-bottom: $spacing-md;
+  
+  @include mobile {
+    font-size: 5rem;
+  }
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.message {
+  color: $text-secondary;
+  margin-bottom: $spacing-xl;
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: center;
+  flex-wrap: wrap;
+}

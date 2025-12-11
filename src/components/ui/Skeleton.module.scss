@@ -1,0 +1,72 @@
+@use "../../styles/variables" as *;
+
+.skeleton {
+  background-color: $gray-200;
+  display: inline-block;
+}
+
+// Variants
+.text {
+  border-radius: 4px;
+  transform: scale(1, 0.8);
+}
+
+.circular {
+  border-radius: 50%;
+}
+
+.rectangular {
+  border-radius: 0;
+}
+
+.rounded {
+  border-radius: $border-radius-md;
+}
+
+// Animations
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.wave {
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: wave 1.5s linear infinite;
+  }
+}
+
+.none {
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

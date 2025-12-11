@@ -1,0 +1,44 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+  
+  @include mobile {
+    font-size: 1.5rem;
+  }
+}
+
+.pageSubtitle {
+  font-size: 1.25rem;
+  color: $text-secondary;
+  margin-bottom: $spacing-md;
+}
+
+.card {
+  @include card;
+  margin-bottom: $spacing-md;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: $spacing-lg;
+  
+  @include responsive($breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

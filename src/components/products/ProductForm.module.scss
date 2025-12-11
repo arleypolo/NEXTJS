@@ -1,0 +1,144 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.form {
+  background: white;
+  padding: $spacing-xl;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error {
+  background-color: rgba($error-color, 0.1);
+  color: $error-color;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-sm;
+  margin-bottom: $spacing-md;
+  font-size: 0.875rem;
+}
+
+.success {
+  background-color: rgba($success-color, 0.1);
+  color: $success-color;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-sm;
+  margin-bottom: $spacing-md;
+  font-size: 0.875rem;
+}
+
+.inputGroup {
+  margin-bottom: $spacing-md;
+  flex: 1;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: 1rem;
+  border: 2px solid $border-color;
+  border-radius: $border-radius-md;
+  transition: all $transition-fast;
+  background-color: white;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 0.875rem;
+  color: $text-secondary;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: flex-end;
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $border-color;
+}
+
+.cancelButton {
+  padding: $spacing-sm $spacing-lg;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $text-secondary;
+  background-color: $gray-100;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $gray-200;
+  }
+}
+
+.submitButton {
+  padding: $spacing-sm $spacing-lg;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: $primary-color;
+  border: none;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover:not(:disabled) {
+    background-color: #1d4ed8;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}

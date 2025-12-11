@@ -1,0 +1,62 @@
+@use "../../styles/variables" as *;
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: $gray-100;
+  
+  &[data-loading="true"] {
+    .image {
+      opacity: 0;
+    }
+  }
+}
+
+// Aspect ratios
+.square {
+  aspect-ratio: 1 / 1;
+}
+
+.video {
+  aspect-ratio: 16 / 9;
+}
+
+.portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.image {
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+  
+  &.loading {
+    opacity: 0;
+  }
+  
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+// Skeleton animation
+.skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    $gray-100 0%,
+    $gray-200 50%,
+    $gray-100 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

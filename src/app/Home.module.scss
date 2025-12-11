@@ -1,0 +1,94 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.homePage {
+  padding: $spacing-xl 0;
+}
+
+.hero {
+  @include flex-center;
+  @include flex-column;
+  text-align: center;
+  padding: $spacing-xl * 3 $spacing-lg;
+  background: linear-gradient(135deg, $primary-color 0%, #7c3aed 100%);
+  color: white;
+  border-radius: $border-radius-lg;
+  margin-bottom: $spacing-xl;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: $spacing-md;
+  
+  @include mobile {
+    font-size: 2rem;
+  }
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-bottom: $spacing-lg;
+  
+  @include mobile {
+    font-size: 1rem;
+  }
+}
+
+.heroButtons {
+  @include flex-center;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.featuresSection {
+  padding: $spacing-xl 0;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  color: $text-primary;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: $spacing-lg;
+  
+  @include responsive($breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.featureCard {
+  @include card;
+  text-align: center;
+  transition: transform $transition-normal, box-shadow $transition-normal;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.featureIcon {
+  font-size: 3rem;
+  margin-bottom: $spacing-md;
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+  color: $text-primary;
+}
+
+.featureDescription {
+  color: $text-secondary;
+  @include line-clamp(3);
+}

@@ -1,0 +1,223 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.productsPage {
+  padding: $spacing-xl 0;
+  min-height: 100vh;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: $primary-color;
+  margin-bottom: $spacing-md;
+  text-decoration: none;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: $primary-hover;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+  
+  @include mobile {
+    font-size: 1.75rem;
+  }
+}
+
+.subtitle {
+  color: $text-secondary;
+  font-size: 1.125rem;
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-xl;
+  padding: $spacing-md;
+  background-color: $bg-secondary;
+  border-radius: $border-radius-lg;
+}
+
+.categoryLink {
+  text-decoration: none;
+  transition: transform $transition-fast;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.categoryLabel {
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: $spacing-lg;
+  
+  @include responsive($breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @include responsive($breakpoint-xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.productCard {
+  @include card;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform $transition-normal, box-shadow $transition-normal;
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.productImage {
+  @include flex-center;
+  aspect-ratio: 4/3;
+  background-color: $bg-secondary;
+  border-radius: $border-radius;
+  margin-bottom: $spacing-md;
+}
+
+.productEmoji {
+  font-size: 4rem;
+}
+
+.productInfo {
+  @include flex-column;
+  flex: 1;
+}
+
+.productName {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+  @include truncate;
+}
+
+.productDescription {
+  font-size: 0.875rem;
+  color: $text-secondary;
+  margin-bottom: $spacing-md;
+  @include line-clamp(2);
+}
+
+.productFooter {
+  @include flex-between;
+  margin-top: auto;
+}
+
+.productPrice {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $primary-color;
+}
+
+.emptyState {
+  @include flex-center;
+  padding: $spacing-xl * 2;
+  text-align: center;
+  color: $text-secondary;
+}
+
+.isrInfo {
+  text-align: center;
+  margin-top: $spacing-xl;
+  padding: $spacing-md;
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-radius: $border-radius;
+  font-size: 0.875rem;
+}
+
+// Skeleton loading styles
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@mixin skeleton {
+  background: linear-gradient(90deg, $bg-secondary 0px, #e5e7eb 40px, $bg-secondary 80px);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: $border-radius;
+}
+
+.skeletonTitle {
+  @include skeleton;
+  height: 2.5rem;
+  width: 300px;
+  margin: 0 auto $spacing-sm;
+}
+
+.skeletonSubtitle {
+  @include skeleton;
+  height: 1.25rem;
+  width: 150px;
+  margin: 0 auto;
+}
+
+.skeletonCategories {
+  @include skeleton;
+  height: 50px;
+  margin-bottom: $spacing-xl;
+}
+
+.skeletonCard {
+  @include card;
+  overflow: hidden;
+}
+
+.skeletonImage {
+  @include skeleton;
+  aspect-ratio: 4/3;
+  margin-bottom: $spacing-md;
+}
+
+.skeletonContent {
+  padding: $spacing-sm 0;
+}
+
+.skeletonText {
+  @include skeleton;
+  height: 1rem;
+  margin-bottom: $spacing-sm;
+}
+
+.skeletonTextShort {
+  @include skeleton;
+  height: 1rem;
+  width: 60%;
+}
