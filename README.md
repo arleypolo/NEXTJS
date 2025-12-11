@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Product Platform
 
-## Getting Started
+A modern e-commerce platform built with Next.js 16, featuring product management, shopping cart, user authentication, and internationalization support.
 
-First, run the development server:
+## 🚀 Features
+
+- **Product Catalog**: Browse products with categories, ratings, and detailed views
+- **Shopping Cart**: Zustand-powered cart with localStorage persistence
+- **User Authentication**: NextAuth.js integration with FakeStoreAPI
+- **Internationalization**: Multi-language support (English & Spanish) using next-intl
+- **Admin Panel**: Product management (CRUD operations)
+- **Responsive Design**: Mobile-first approach with SCSS modules
+- **Server-Side Rendering**: Optimized performance with Next.js App Router
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Node.js** 18.x or higher
+- **npm** 9.x or higher (or yarn/pnpm)
+- **MongoDB** (optional, for likes and some features)
+
+## 🛠️ Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/arleypolo/NEXTJS.git
+   cd NEXTJS
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3.
+
+## 🚀 Running the Application
+
+### Development Mode
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+### Linting
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔐 Authentication
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The application uses [FakeStoreAPI](https://fakestoreapi.com/) for authentication. Use these test credentials:
 
-## Deploy on Vercel
+| Username | Password | Role |
+|----------|----------|------|
+| `johnd` | `m38rmF$` | Admin |
+| `mor_2314` | `83r5^_` | User |
+| `kevinryan` | `kev02937@` | User |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> **Note**: FakeStoreAPI is a mock API. User registrations are simulated and not persisted.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── admin/              # Admin panel (product management)
+│   ├── auth/               # Authentication pages
+│   ├── cart/               # Shopping cart
+│   ├── products/           # Product pages
+│   └── profile/            # User profile
+├── components/             # Reusable components
+│   ├── forms/              # Form components
+│   ├── layout/             # Layout components (NavBar, Footer)
+│   ├── products/           # Product-related components
+│   └── ui/                 # UI primitives
+├── contexts/               # React contexts (Cart, Likes)
+├── hooks/                  # Custom React hooks
+├── i18n/                   # Internationalization config
+├── lib/                    # Utilities (auth, MongoDB)
+├── models/                 # MongoDB models
+├── services/               # API services (FakeStoreAPI)
+├── stores/                 # Zustand stores
+├── styles/                 # Global styles and variables
+└── types/                  # TypeScript type definitions
+messages/
+├── en.json                 # English translations
+└── es.json                 # Spanish translations
+```
+
+## 🌐 Internationalization
+
+The app supports English and Spanish. Language can be switched using the language selector (🌐) in the navigation bar.
+
+- Default language: Spanish (es)
+- Available languages: English (en), Spanish (es)
+- Language preference is stored in a cookie (`NEXT_LOCALE`)
+
+## 🛒 Cart Functionality
+
+The shopping cart uses Zustand for state management with the following features:
+
+- **Persistence**: Cart data is saved to localStorage
+- **Server Sync**: Cart can be synced with FakeStoreAPI
+- **Checkout**: Submit cart to the API endpoint
+
+## 🔧 Technologies Used
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Next.js | 16.0.8 | React framework |
+| React | 19.2.1 | UI library |
+| TypeScript | 5.x | Type safety |
+| Zustand | 5.0.9 | State management |
+| next-intl | 4.5.8 | Internationalization |
+| NextAuth.js | 5.0.0-beta | Authentication |
+| Sass | 1.96.0 | Styling |
+| styled-components | 6.1.19 | CSS-in-JS |
+
+## 📝 API Integration
+
+The application integrates with [FakeStoreAPI](https://fakestoreapi.com/) for:
+
+- **Products**: GET, POST, PUT, DELETE operations
+- **Users**: Authentication and user management
+- **Carts**: Shopping cart management
+
+## 👤 Author
+
+**Dawinzon Arley Polo Ciro**
+**Gosling**
+
