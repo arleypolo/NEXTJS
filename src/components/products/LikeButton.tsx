@@ -1,6 +1,6 @@
 "use client";
 
-import { useLikes } from "@/contexts";
+import { useLikes } from "@/hooks";
 import styles from "./LikeButton.module.scss";
 
 interface LikeButtonProps {

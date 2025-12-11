@@ -129,13 +129,19 @@
   color: $text-primary;
 }
 
-.ssrInfo {
-  padding: $spacing-sm $spacing-md;
-  background-color: #dcfce7;
-  color: #166534;
-  border-radius: $border-radius;
-  font-size: 0.75rem;
-  text-align: center;
+.infoText {
+  color: $text-secondary;
+  line-height: 1.6;
+  margin-bottom: $spacing-md;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  strong {
+    color: $text-primary;
+    font-weight: 600;
+  }
 }
 
 .logoutSection {

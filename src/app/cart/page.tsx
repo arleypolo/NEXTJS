@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useCart } from "@/contexts";
+import { useCart } from "@/hooks";
 import { OptimizedImage } from "@/components/ui";
 import Link from "next/link";
 import { useSession } from "next-auth/react";

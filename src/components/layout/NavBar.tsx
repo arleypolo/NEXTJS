@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useTranslations } from 'next-intl';
-import { useCart, useLikes } from "@/contexts";
+import { useCart, useLikes } from "@/hooks";
 import LanguageSelector from "./LanguageSelector";
 
 export default function NavBar() {

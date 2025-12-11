@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
-import { getUserById } from "@/services/users";
 import styles from "./Profile.module.scss";
 import { Badge } from "@/components/ui";
 import { LogoutButton } from "@/components/auth";
+import { getUserById } from "@/services/fakeStoreApi";
 
 // SSR: Forzar renderizado dinámico (sin cache)
 export const dynamic = "force-dynamic";
@@ -22,29 +22,21 @@ export default async function ProfilePage() {
     redirect("/login");
   }
 
-  // Obtener datos completos del usuario
-  const user = await getUserById(session.user.id);
+  // Obtener datos completos del usuario desde FakeStoreAPI
+  const fakeStoreUser = await getUserById(session.user.id);
 
-  if (!user) {
+  if (!fakeStoreUser) {
     redirect("/login");
   }
 
-  const memberSince = new Date(user.createdAt).toLocaleDateString("es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const user = fakeStoreUser;
 
   return (
     <div className={styles.profilePage}>
       <div className="max-w-2xl mx-auto">
         <header className={styles.header}>
           <div className={styles.avatar}>
-            {user.image ? (
-              <img src={user.image} alt={user.name} />
-            ) : (
-              <span>{user.name.charAt(0).toUpperCase()}</span>
-            )}
+            <span>{user.firstname.charAt(0).toUpperCase()}</span>
           </div>
           <div className={styles.headerInfo}>
             <h1 className={styles.userName}>{user.name}</h1>
@@ -59,12 +51,24 @@ export default async function ProfilePage() {
           <h2 className={styles.sectionTitle}>Información de la cuenta</h2>
           <div className={styles.infoGrid}>
             <div className={styles.infoItem}>
-              <span className={styles.infoLabel}>Nombre</span>
+              <span className={styles.infoLabel}>Nombre completo</span>
               <span className={styles.infoValue}>{user.name}</span>
             </div>
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Email</span>
               <span className={styles.infoValue}>{user.email}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.infoLabel}>Teléfono</span>
+              <span className={styles.infoValue}>{user.phone}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.infoLabel}>Dirección</span>
+              <span className={styles.infoValue}>{user.address}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.infoLabel}>Username</span>
+              <span className={styles.infoValue}>{user.username}</span>
             </div>
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Rol</span>
@@ -73,16 +77,11 @@ export default async function ProfilePage() {
               </span>
             </div>
             <div className={styles.infoItem}>
-              <span className={styles.infoLabel}>Miembro desde</span>
-              <span className={styles.infoValue}>{memberSince}</span>
+              <span className={styles.infoLabel}>ID de usuario</span>
+              <span className={styles.infoValue}>#{user.id}</span>
             </div>
           </div>
         </section>
-
-        {/* Info de SSR */}
-        <p className={styles.ssrInfo}>
-          Esta página se carga en tiempo real (SSR) - Datos actualizados al momento
-        </p>
 
         {/* Botón de cerrar sesión */}
         <div className={styles.logoutSection}>

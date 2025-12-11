@@ -18,7 +18,6 @@ Before you begin, ensure you have the following installed:
 
 - **Node.js** 18.x or higher
 - **npm** 9.x or higher (or yarn/pnpm)
-- **MongoDB** (optional, for likes and some features)
 
 ## 🛠️ Installation
 
@@ -90,8 +89,7 @@ src/
 ├── contexts/               # React contexts (Cart, Likes)
 ├── hooks/                  # Custom React hooks
 ├── i18n/                   # Internationalization config
-├── lib/                    # Utilities (auth, MongoDB)
-├── models/                 # MongoDB models
+├── lib/                    # Utilities (auth, registry)
 ├── services/               # API services (FakeStoreAPI)
 ├── stores/                 # Zustand stores
 ├── styles/                 # Global styles and variables

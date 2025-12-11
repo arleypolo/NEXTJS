@@ -1,6 +1,6 @@
 "use client";
 
-import { useCart } from "@/contexts";
+import { useCart } from "@/hooks";
 import { useState } from "react";
 import styles from "./AddToCartButton.module.scss";
 

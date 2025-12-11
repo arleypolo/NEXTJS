@@ -135,8 +135,6 @@ export const useCartStore = create<CartStore>()(
             throw new Error("Error al obtener el carrito del servidor");
           }
 
-          const carts = await response.json();
-
           set({ lastSyncedAt: new Date(), error: null });
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : "Error desconocido";

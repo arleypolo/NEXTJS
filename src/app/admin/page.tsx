@@ -1,43 +1,39 @@
-import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth";
 import AdminProductList from "./AdminProductList";
-import Link from "next/link";
 import styles from "./admin.module.scss";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
-  title: "Admin - Productos | ProductPlatform",
-  description: "Panel de administración de productos",
+    title: "Panel de Administración | ProductPlatform",
+    description: "Gestiona productos - Demo FakeStoreAPI",
 };
 
 export default async function AdminPage() {
-  const session = await auth();
+    const session = await auth();
 
-  if (!session?.user) {
-    redirect("/login?callbackUrl=/admin");
-  }
+    // Verificar autenticación
+    if (!session?.user) {
+        redirect("/login");
+    }
 
-  if (session.user.role !== "admin") {
-    redirect("/");
-  }
+    // Verificar rol de admin
+    if (session.user.role !== "admin") {
+        redirect("/");
+    }
 
-  return (
-    <div className={styles.adminPage}>
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <div className={styles.headerContent}>
-            <h1>Administración de Productos</h1>
-            <p>Gestiona los productos de FakeStoreAPI</p>
-          </div>
-          <Link href="/admin/create" className={styles.createButton}>
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-            </svg>
-            Nuevo Producto
-          </Link>
-        </header>
-
-        <AdminProductList />
-      </div>
-    </div>
-  );
+    return (
+        <div className={styles.adminPage}>
+            <div className="max-w-7xl mx-auto">
+                <header className={styles.header}>
+                    <div>
+                        <h1 className={styles.title}>Panel de Administración</h1>
+                        <p className={styles.subtitle}>Gestiona los productos del catálogo</p>
+                    </div>
+                </header>
+                <AdminProductList />
+            </div>
+        </div>
+    );
 }

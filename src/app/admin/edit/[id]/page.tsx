@@ -1,64 +1,53 @@
-import { auth } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
-import { getProductById, getCategories } from "@/services/fakeStoreApi";
-import ProductFormFakeStore from "@/app/admin/ProductFormFakeStore";
-import styles from "@/app/admin/admin.module.scss";
+import { auth } from "@/lib/auth";
+import { getProducts } from "@/services/fakeStoreApi";
+import ProductFormFakeStore from "../../ProductFormFakeStore";
+import styles from "../../admin.module.scss";
+
+export const dynamic = "force-dynamic";
 
 interface EditProductPageProps {
-  params: Promise<{ id: string }>;
+    params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: EditProductPageProps) {
-  const { id } = await params;
-  const product = await getProductById(id);
-
-  if (!product) {
-    return { title: "Producto no encontrado" };
-  }
-
-  return {
-    title: `Editar: ${product.name} | Admin`,
-    description: `Editando producto: ${product.name}`,
-  };
+    const { id } = await params;
+    return {
+        title: `Editar Producto #${id} | Admin`,
+        description: "Editar producto - Demo FakeStoreAPI",
+    };
 }
 
 export default async function EditProductPage({ params }: EditProductPageProps) {
-  const session = await auth();
-  const { id } = await params;
+    const session = await auth();
 
-  if (!session?.user) {
-    redirect(`/login?callbackUrl=/admin/edit/${id}`);
-  }
+    if (!session?.user) {
+        redirect("/login");
+    }
 
-  if (session.user.role !== "admin") {
-    redirect("/");
-  }
+    if (session.user.role !== "admin") {
+        redirect("/");
+    }
 
-  const [product, categories] = await Promise.all([
-    getProductById(id),
-    getCategories(),
-  ]);
+    const { id } = await params;
 
-  if (!product) {
-    notFound();
-  }
+    // Obtener producto de FakeStoreAPI
+    const { products } = await getProducts({ limit: 100 });
+    const product = products.find(p => p.id === id);
 
-  return (
-    <div className={styles.adminPage}>
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <div className={styles.headerContent}>
-            <h1>Editar Producto</h1>
-            <p>Modificando: {product.name}</p>
-          </div>
-        </header>
+    if (!product) {
+        notFound();
+    }
 
-        <ProductFormFakeStore 
-          categories={categories} 
-          initialData={product}
-          isEditing
-        />
-      </div>
-    </div>
-  );
+    return (
+        <div className={styles.adminPage}>
+            <div className="max-w-3xl mx-auto">
+                <header className={styles.header}>
+                    <h1 className={styles.title}>Editar Producto</h1>
+                    <p className={styles.subtitle}>Modificar producto #{id} (simulación)</p>
+                </header>
+                <ProductFormFakeStore product={product} />
+            </div>
+        </div>
+    );
 }
